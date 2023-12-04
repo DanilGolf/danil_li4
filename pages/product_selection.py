@@ -15,7 +15,7 @@ class Product_selection(Base):
     # locators
 
     dedicated_servers = '//*[@id="navbarNavDropdown"]/ul[1]/li[4]/a'
-    aspire_select = '//button[@data-term="12"]'
+    essential_select = '//*[@id="managed-dedicated-servers-rostrum"]/div/div[2]/div[1]/div[2]/div[2]/div/div[1]/button'
 
     def get_dedicated_servers(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.dedicated_servers)))
@@ -23,11 +23,11 @@ class Product_selection(Base):
     # def get_password(self):
     # return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.password)))
 
-    def get_aspire_select(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.aspire_select)))
+    def get_essential_select(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.essential_select)))
 
-    def click_aspire_select(self):
-        self.get_aspire_select().click()
+    def click_essential_select(self):
+        self.get_essential_select().click()
 
     def click_dedicated_servers(self):
         self.get_dedicated_servers().click()
@@ -37,4 +37,4 @@ class Product_selection(Base):
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.click_dedicated_servers()
-        self.click_aspire_select()
+        self.click_essential_select()
