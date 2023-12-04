@@ -35,8 +35,8 @@ class Purchase_of_goods(Base):
     def get_billing_word(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.billing_word)))
 
-    def get_total_test(self):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.total)))
+   # def get_total_test(self):
+        #return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.total)))
 
     def click_on_element(self, element):
         return element.click()
@@ -49,7 +49,7 @@ class Purchase_of_goods(Base):
         self.click_on_element(self.get_choice_domain_name())
         self.click_on_element(self.get_continue_button_2())
         self.assert_word(self.get_billing_word(), 'Billing Details')
-        print(self.text_element_1(self.get_total_test()))
+        #print(self.text_element_1(self.get_total_test()))
 
         time.sleep(10)
 
