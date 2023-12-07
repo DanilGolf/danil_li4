@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -31,7 +29,7 @@ class Product_selection(Base):
     def find_element(self, element):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.CSS_SELECTOR, element)))
 
-    def check_web(self):
+    def tests_audi(self):
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.find_element(self.audi_button).click()
