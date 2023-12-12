@@ -1,6 +1,4 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+import time
 
 from base.base_class import Base
 
@@ -11,8 +9,6 @@ class Product_selection(Base):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-
-    # locators
 
     audi_button = '[href="/Catalog/Global/Cars/Audi"]'
     rs_8_button = '[href="/Catalog/Global/Cars/Audi/24479"]'
@@ -25,9 +21,16 @@ class Product_selection(Base):
     personal_cabinet = '#guestForm > h3'
     personal_cabinet_window = '[class="b login"]'
     window_r_8 = '''[onclick="geturlEx('24479');return false;"]'''
-
-    def find_element(self, element):
-        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.CSS_SELECTOR, element)))
+    catalog_button = '[class*=" mainmenu-list__button-ddl--catalogs"]'
+    city = '[href="javascript:void(0)"]'
+    motor_oil = '[title="Выбор моторных масел по параметрам"]'
+    filter_o = '[class="h"]'
+    oil_alpine = '''[onclick="_history.Add(event, '1_-10=2078');"]'''
+    viscosity_5w_40 = '''[onclick="_history.Add(event, '1_6=2103');"]'''
+    api_cl = '''[onclick="_history.Add(event, '1_2131=3511');"]'''
+    oil_alpine_0100161 = '[class="img"]'
+    window_alpine_0100161 = '#fancybox-outer'
+    name_oil_motors = '#ajaxupdatepanel > h1'
 
     def tests_audi(self):
         self.driver.get(self.url)
@@ -43,3 +46,29 @@ class Product_selection(Base):
         self.find_element(self.hella_throttle_position_sensor).click()
         assert self.find_element(self.personal_cabinet_window), "Окно не открылось"
         assert self.find_element(self.personal_cabinet).text == "Личный кабинет", "Оглавление не подходит"
+
+    def test_oil(self):
+        self.driver.get(self.url)
+        self.driver.maximize_window()
+        self.find_element(self.city).click()
+        self.find_element(self.catalog_button).click()
+        self.find_element(self.motor_oil).click()
+        assert self.find_element(self.name_oil_motors).text == "Масла моторные", "Вкладка не открылась"
+        filter_brend = self.find_elements(self.filter_o)[1]
+        filter_brend.click()
+        self.find_element(self.oil_alpine).click()
+        time.sleep(3)
+        filter_composition = self.find_elements(self.filter_o)[2]
+        filter_composition.click()
+        self.find_element(self.viscosity_5w_40).click()
+        time.sleep(3)
+        filter_api = self.find_elements(self.filter_o)[5]
+        filter_api.click()
+        self.find_element(self.api_cl).click()
+        time.sleep(3)
+        self.find_element(self.oil_alpine_0100161).click()
+        time.sleep(3)
+        assert self.find_element(self.window_alpine_0100161), "окно не найдено"
+        time.sleep(10)
+
+
