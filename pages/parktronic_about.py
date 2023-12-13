@@ -69,6 +69,5 @@ class Product_selection(Base):
         self.find_element(self.oil_alpine_0100161).click()
         time.sleep(3)
         assert self.find_element(self.window_alpine_0100161), "окно не найдено"
-        time.sleep(10)
 
 
