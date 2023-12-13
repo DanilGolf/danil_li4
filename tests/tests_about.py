@@ -1,5 +1,5 @@
 from selenium import webdriver
-from pages.parktronic_about import Product_selection
+from pages.exist_about import Product_selection
 
 
 def test_filter1():
